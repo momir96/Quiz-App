@@ -1,6 +1,9 @@
 # Quiz
 
-This template should help get you started developing with Vue 3 in Vite.
+An interactive Quiz application that includes user login and registration
+functionalities. The application is structured around three different themes, each
+encompassing specific questions with multiple-choice answers. Upon completion of
+the quiz, correct answers are recorded on a leaderboard alongside other users' scores.
 
 ## Recommended IDE Setup
 
