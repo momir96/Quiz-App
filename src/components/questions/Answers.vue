@@ -57,6 +57,9 @@ export default {
   color: rgb(255, 255, 255);
 }
 
+
+
+
 .answer span {
   display: inline-block;
   margin-left: 5px;

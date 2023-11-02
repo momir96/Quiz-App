@@ -1,19 +1,15 @@
 <template>
-    <the-header></the-header>
-    <div v-if="questionsAnswered < questions.length">
-      <question-animation></question-animation>
-    </div>
+  <the-header></the-header>
+  <div v-if="questionsAnswered < questions.length">
+    <question-animation></question-animation>
+  </div>
   <div>
     <transition-group name="fade" mode="out-in">
       <div class="ctr">
-        <question
-          v-if="questionsAnswered < questions.length"
-          :questions="questions"
-          :questionsAnswered="questionsAnswered"
-          @question-answered="questionAnswered"
-        ></question>
+        <question v-if="questionsAnswered < questions.length" :questions="questions"
+          :questionsAnswered="questionsAnswered" @question-answered="questionAnswered"></question>
         <result v-else :results="results" :totalCorrect="totalCorrect" :questions="questions"></result>
-  
+
         <button type="button" class="reset-btn" @click.prevent="reset">
           Reset
         </button>
@@ -21,7 +17,7 @@
     </transition-group>
   </div>
   <the-footer class="footer"></the-footer>
-  <timer ref="timer"></timer>
+  <!-- <timer ref="timer"></timer> -->
 </template>
   
 <script>
@@ -31,7 +27,6 @@ import Question from "./Question.vue";
 import Result from "./Result.vue";
 import TheHeader from "../layout/TheHeader.vue";
 import TheFooter from "../layout/TheFooter.vue";
-import Timer from "./Timer.vue";
 import Sound from '../../sounds/button.mp3';
 
 
@@ -42,7 +37,7 @@ export default {
     QuestionAnimation,
     TheHeader,
     TheFooter,
-    Timer,
+    
   },
   methods: {
 
@@ -90,7 +85,6 @@ export default {
   },
   mounted() {
     this.fetchQuestions();
-    this.$refs.timer.startCountdown();
     this.audioElement = new Audio(Sound);
 
   },
@@ -132,7 +126,7 @@ export default {
 </script>
 
   
-<style scope>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap");
 
 * {
@@ -141,13 +135,14 @@ export default {
   box-sizing: border-box;
 }
 
-.footer {
-  position: fixed;
+html,
+body {
+  height: 100%;
 }
 
 .ctr {
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 20px;
   max-width: 600px;
   width: 100%;
   box-sizing: border-box;
@@ -157,14 +152,17 @@ export default {
 .fade-enter-from {
   opacity: 0;
 }
+
 .fade-enter-active {
   transition: all 0.3s linear;
 }
+
 .fade-leave-active {
   transition: all 0.3s linear;
   opacity: 0;
   position: absolute;
 }
+
 .fade-leave-to {
   opacity: 0;
 }

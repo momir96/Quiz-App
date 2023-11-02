@@ -1,30 +1,18 @@
 <template>
-  <timer></timer>
+  
   <div class="questions-ctr">
     <div class="progress">
-      <div
-        class="bar"
-        :style="{ width: `${(questionsAnswered / questions.length) * 100}%` }"
-      ></div>
+      <div class="bar" :style="{ width: `${(questionsAnswered / questions.length) * 100}%` }"></div>
       <div class="status">
         {{ questionsAnswered }} out of {{ questions.length }}
       </div>
     </div>
 
-    <div
-      class="single-question"
-      v-for="(question, qi) in questions"
-      :key="question.q"
-      v-show="questionsAnswered === qi"
-    >
+    <div class="single-question" v-for="(question, qi) in questions" :key="question.q" v-show="questionsAnswered === qi">
       <div class="question">{{ question.question }}</div>
 
-      <answer
-        v-for="answer in question.answers"
-        :key="answer.text"
-        :answer="answer"
-        @answer-selected="selectAnswer"
-      ></answer>
+      <answer v-for="answer in question.answers" :key="answer.text" :answer="answer" @answer-selected="selectAnswer">
+      </answer>
     </div>
   </div>
 </template>
@@ -58,10 +46,14 @@ export default {
   transition: opacity 0.5s;
 }
 
+
+
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
 }
+
 .questions-ctr {
   position: relative;
 
@@ -106,6 +98,7 @@ export default {
   left: 0;
   text-align: center;
   color: #070707;
+  font-weight: bold;
   width: 100%;
 }
 </style>

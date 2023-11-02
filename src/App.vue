@@ -5,7 +5,6 @@
     <div class="bg bg3"></div>
     <router-view />
   </div>
-   
 </template>
 
 <script>
@@ -94,10 +93,14 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
 }
+
+
 html {
   height: 100%;
 }
+
 .bg {
   animation: slide 3s ease-in-out infinite alternate;
   background-image: linear-gradient(20deg, rgb(243, 131, 131) 50%, #fffafa 50%);
@@ -127,6 +130,7 @@ h1 {
   0% {
     transform: translateX(-25%);
   }
+
   100% {
     transform: translateX(25%);
   }

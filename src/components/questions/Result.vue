@@ -2,20 +2,20 @@
   <animation-result class="anim"></animation-result>
   <div class="result">
 
-    <div class="title">Score:</div>
+    <div class="title">Your score:</div>
     <div class="desc">
-      <h2>Questions:</h2>
+      <h2>Number of questions:</h2>
       <span>{{ questions.length }}</span>
     </div>
     <div class="desc">
-      <h2>Correct answers:</h2>
+      <h2>True answers:</h2>
       <span>{{ totalCorrect }}</span>
     </div>
   </div>
   <div class="button">
     <button class="b1" @click="allResults">Save</button>
-    <button class="b2" @click="results">Results</button>
-    <button class="b3" @click="theme">Choose Theme</button>
+    <button class="b2" @click="results">All Results</button>
+    <button class="b3" @click="theme">Back to Theme</button>
   </div>
 </template>
 
@@ -86,6 +86,9 @@ export default {
   margin-top: 0px;
   padding-top: 0px;
 }
+
+
+
 
 .fade-enter-active,
 .fade-leave-active {
@@ -195,4 +198,5 @@ button:hover {
 .results {
   text-align: start;
   padding-left: 0;
-}</style>
+}
+</style>

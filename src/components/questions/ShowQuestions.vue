@@ -15,7 +15,7 @@
     </div>
   </transition-group>
   <the-footer class="footer"></the-footer>
-  <timer ref="timer"></timer>
+  <!-- <timer ref="timer"></timer> -->
 </template>
 
 <script>
@@ -78,7 +78,6 @@ export default {
   },
   mounted() {
     this.fetchQuestions();
-    this.$refs.timer.startCountdown();
   },
   watch: {
     "$route.path": function (newPath) {
@@ -122,6 +121,7 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
+
 
 .ctr {
   margin: 0 auto;
@@ -170,7 +170,5 @@ export default {
   background-color: #670404;
   color: white;
 }
-.footer{
-  position: sticky;
-}
+
 </style>

@@ -21,7 +21,7 @@
         <button @click="submit()" class="btn">Log in</button>
       </div>
       <router-link to="/signup">
-        <a class="signup-link">Signup</a>
+        <span class="signup-link">Signup</span>
       </router-link>
     </div>
   </div>
@@ -110,6 +110,18 @@ export default {
           if (response.status === 200) {
             console.log("Login successful!");
             console.log(response.data);
+
+            if (response.data.user_exists === false) {
+              console.log("User does not exist. Redirecting to signup page.");
+              this.$router.push("/signup");
+              return;
+            }
+
+            if (response.data.login_success === false) {
+              console.log("Invalid credentials. Please enter correct email and password.");
+              return;
+            }
+
             localStorage.setItem("loggedInUser", response.data.user_name);
             localStorage.setItem("sid", response.data.sid);
             this.$emit("userLoggedIn", response.data.user_name);
@@ -119,6 +131,10 @@ export default {
             this.$router.push("/theme");
 
             console.log("Posle preusmeravanja");
+            this.handleUserLoggedIn(
+              response.data.user_name,
+              response.data.role === "admin"
+            );
           }
         })
         .catch((error) => {

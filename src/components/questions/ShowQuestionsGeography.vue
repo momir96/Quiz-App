@@ -3,23 +3,18 @@
   <div v-if="questionsAnswered < questions.length">
     <question-animation></question-animation>
   </div>
-  <transition-group name="fade" mode="out-in">
+  
     <div class="ctr">
-      <question
-        v-if="questionsAnswered < questions.length"
-        :questions="questions"
-        :questionsAnswered="questionsAnswered"
-        @question-answered="questionAnswered"
-      ></question>
-      <result v-else :results="results" :totalCorrect="totalCorrect"  :questions="questions"></result>
+      <question v-if="questionsAnswered < questions.length" :questions="questions" :questionsAnswered="questionsAnswered"
+        @question-answered="questionAnswered"></question>
+      <result v-else :results="results" :totalCorrect="totalCorrect" :questions="questions"></result>
 
       <button type="button" class="reset-btn" @click.prevent="reset">
         Reset
       </button>
     </div>
-  </transition-group>
+  
   <the-footer class="footer"></the-footer>
-
 </template>
 
 <script>
@@ -106,11 +101,13 @@ export default {
 </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap");
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
 
 .ctr {
   margin: 0 auto;
@@ -124,14 +121,17 @@ export default {
 .fade-enter-from {
   opacity: 0;
 }
+
 .fade-enter-active {
   transition: all 0.3s linear;
 }
+
 .fade-leave-active {
   transition: all 0.3s linear;
   opacity: 0;
   position: absolute;
 }
+
 .fade-leave-to {
   opacity: 0;
 }
@@ -155,8 +155,5 @@ export default {
   outline: 0;
   background-color: #670404;
   color: white;
-}
-.footer{
-  position: fixed;
 }
 </style>

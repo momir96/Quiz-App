@@ -1,25 +1,22 @@
 <template>
-  
-    <the-header></the-header>
-    <div v-if="questionsAnswered < questions.length">
-      <question-animation></question-animation>
-    </div>
-    <transition-group name="fade" mode="out-in">
-      <div class="ctr">
-        <question v-if="questionsAnswered < questions.length" :questions="questions"
-          :questionsAnswered="questionsAnswered" @question-answered="questionAnswered"></question>
-        <result v-else :results="results" :totalCorrect="totalCorrect" :questions="questions"></result>
+  <the-header></the-header>
+  <div v-if="questionsAnswered < questions.length">
+    <question-animation></question-animation>
+  </div>
+  <transition-group name="fade" mode="out-in">
+    <div class="ctr">
+      <question v-if="questionsAnswered < questions.length" :questions="questions" :questionsAnswered="questionsAnswered"
+        @question-answered="questionAnswered"></question>
+      <result v-else :results="results" :totalCorrect="totalCorrect" :questions="questions"></result>
 
-        <button type="button" class="reset-btn" @click.prevent="reset">
-          Reset
-        </button>
-      </div>
-      <div class="ctr"></div>
-    </transition-group>
-    <the-footer class="footer"></the-footer>
-  
+      <button type="button" class="reset-btn" @click.prevent="reset">
+        Reset
+      </button>
+    </div>
+  </transition-group>
+  <the-footer class="footer"></the-footer>
 </template>
-  
+
 <script>
 import axios from "axios";
 import QuestionAnimation from "../UI/QuestionAnimation.vue";
@@ -28,15 +25,13 @@ import Result from "./Result.vue";
 import TheHeader from "../layout/TheHeader.vue";
 import TheFooter from "../layout/TheFooter.vue";
 
-
 export default {
   components: {
     Question,
     Result,
     QuestionAnimation,
     TheHeader,
-    TheFooter,
-    
+    TheFooter
   },
   methods: {
     questionAnswered(is_correct) {
@@ -49,7 +44,7 @@ export default {
     reset() {
       this.questionsAnswered = 0;
       this.totalCorrect = 0;
-      this.$router.push("/theme");
+      this.$router.push('/theme')
     },
     async fetchQuestions() {
       try {
@@ -79,18 +74,7 @@ export default {
   },
   mounted() {
     this.fetchQuestions();
-    this.$refs.timer.startCountdown();
   },
-  watch: {
-    "$route.path": function (newPath) {
-      if (newPath === "/theme") {
-        this.showTimer = true;
-      } else {
-        this.showTimer = false;
-      }
-    },
-  },
-
   data() {
     return {
       login: false,
@@ -111,7 +95,6 @@ export default {
           desc: "Studying has definitely paid off for you!",
         },
       ],
-      showTimer: false,
     };
   },
 };
@@ -125,12 +108,6 @@ export default {
   box-sizing: border-box;
 }
 
-/* body {
-  background-image: url('@/assets/img/istorija.jpg');
-  background-size: cover;
-  background-position: center;
-  filter: brightness(70%);
-} */
 
 .ctr {
   margin: 0 auto;
@@ -139,7 +116,6 @@ export default {
   width: 100%;
   box-sizing: border-box;
   position: relative;
-  overflow: hidden;
 }
 
 .fade-enter-from {
@@ -161,8 +137,8 @@ export default {
 }
 
 .reset-btn {
-  box-shadow: 5px 4px 15px rgba(0, 0, 0, 2);
   background-color: #de1616;
+  box-shadow: 5px 4px 15px rgba(0, 0, 0, 2);
   border-radius: 30px;
   font-size: 22px;
   font-weight: bold;
@@ -179,9 +155,5 @@ export default {
   outline: 0;
   background-color: #670404;
   color: white;
-}
-
-.footer {
-  position: sticky;
 }
 </style>

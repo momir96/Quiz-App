@@ -1,12 +1,10 @@
 <template>
- 
-    <the-header></the-header>
-    <choose-quiz-animation class="anim"></choose-quiz-animation>
-    <div>
-      <show-all-themes :themes="themes"></show-all-themes>
-    </div>
-    <the-footer class="footer"></the-footer>
-  
+  <the-header></the-header>
+  <choose-quiz-animation class="anim"></choose-quiz-animation>
+  <div>
+    <show-all-themes :themes="themes"></show-all-themes>
+  </div>
+  <the-footer class="footer"></the-footer>
 </template>
 
 <script>
@@ -74,9 +72,4 @@ export default {
 .anim {
   margin-top: 20px;
 }
-
-.footer {
-  position: sticky;
-}
-
 </style>

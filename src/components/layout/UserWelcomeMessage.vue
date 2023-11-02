@@ -1,6 +1,6 @@
 <template>
   <div class="user-welcome-message">
-    Welcome, {{ loggedInUser }}!
+    Dobro došli u kviz, {{ loggedInUser }}!
   </div>
 </template>
   

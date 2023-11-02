@@ -123,9 +123,11 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.name = "";
-          localStorage.setItem("loggedInUser", userData.user_name);
-          this.$emit("userLoggedIn", this.name);
+          localStorage.setItem("loggedInUser",userData.user_name);
+          localStorage.setItem("sid", response.data.sid);
+          this.$emit("userLoggedIn",response.data.user_name);
           this.$router.push("/theme");
+          
         })
 
         .catch((error) => {
@@ -146,6 +148,14 @@ export default {
           "http://134u123.e2.mars-hosting.com/project_quiz/log_reg/register",
           userData
         )
+        .then((response) => {
+          console.log(response.data);
+          this.name = "";
+          localStorage.setItem("loggedInUser", response.data.user_name);
+          localStorage.setItem("sid", response.data.sid);
+          this.$emit("userLoggedIn", this.name);
+          this.$router.push("/theme");
+        })
         .catch((error) => {
           console.error("Registration failed", error);
         });
@@ -262,13 +272,9 @@ export default {
       this.confirmPasswordError = "";
     },
     beforeRouteLeave(to, from, next) {
-      // Ovdje možete provjeriti uvjete prije nego što dopustite navigaciju unazad/naprijed
       if (this.showForm) {
-        // Ako showForm je true, što znači da je forma prikazana
-        // onemogućite navigaciju unazad/naprijed
         next(false);
       } else {
-        // Inače, dopustite navigaciju unazad/naprijed
         next();
       }
     },

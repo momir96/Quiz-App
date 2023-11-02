@@ -4,7 +4,7 @@
 
     <div class="msg">
       <span class="welcome" v-if="isUserLoggedIn && !isUserLoggedInViaSignup">
-        <h3>Welcome, {{ loggedInUser }}!</h3>
+        <h3>Welcome to Quiz, {{ loggedInUser }}!</h3>
       </span>
     </div>
 
@@ -34,6 +34,7 @@ export default {
 
   mounted() {
     this.updateLoggedInUser();
+    console.log("header")
   },
 
   methods: {
@@ -61,14 +62,14 @@ export default {
       }
     },
 
-    handleUserLoggedIn(userName) {
+    handleUserLoggedIn(userName,isAdmin) {
       console.log("User logged in:", userName);
       this.loggedInUser = userName;
+      this.isAdmin = isAdmin;
       this.isUserLoggedIn = true;
       this.isUserLoggedInViaSignup = false;
       localStorage.setItem("loggedInUser", userName);
 
-      this.isAdmin = userName.toLowerCase() === "admin";
       console.log("isAdmin:", this.isAdmin);
 
       console.log("Handle user logged in called");
@@ -77,7 +78,6 @@ export default {
         localStorage.setItem("isAdmin", "true");
       } else {
         localStorage.removeItem("isAdmin");
-        this.isAdmin = false;
       }
       console.log("isAdmin in localStorage:", localStorage.getItem("isAdmin") === "true");
       this.$router.replace({ name: "Theme" });
@@ -92,6 +92,8 @@ export default {
       localStorage.removeItem("loggedInUser");
       localStorage.removeItem("loggedInUserViaSignup");
       localStorage.removeItem("isAdmin");
+      localStorage.removeItem("sid")
+      localStorage.removeItem("isLoggedIn")
     },
   },
 };

@@ -2,11 +2,7 @@
   <ul>
     <div>
       <transition-group name="fade" mode="out-in">
-        <current-theme
-          v-for="theme in themes"
-          :key="theme.id"
-          :title="theme.title"
-        >
+        <current-theme v-for="theme in themes" :key="theme.id" :title="theme.title">
         </current-theme>
       </transition-group>
     </div>
@@ -36,6 +32,8 @@ ul {
   margin: auto;
   max-width: 40rem;
 }
+
+
 
 .fade-enter-active,
 .fade-leave-active {

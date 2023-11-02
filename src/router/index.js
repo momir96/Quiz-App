@@ -39,6 +39,7 @@ const router = createRouter({
       path: '/admin',
       name: 'Admin',
       component: AdminVue,
+      meta: { requiresAuth: true },
     },
     {
       path: '/question',
@@ -76,14 +77,15 @@ const router = createRouter({
 
   ]
 });
-
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'login' && !localStorage.getItem('loggedInUser')) {
+  if (!(to.name === 'login' || to.name === "signup")  && !localStorage.getItem('loggedInUser')) {
     next('/login');
   } else {
     next();
   }
 });
+
+
 
 
 export default router

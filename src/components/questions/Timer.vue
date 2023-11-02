@@ -2,9 +2,9 @@
   <div v-if="showTimer" class="timer">
     <div class="countdown-container">
       <div class="countdown-number">{{ countdown }}</div>
-      <div class="countdown-label">SEK</div>
+      <div class="countdown-label">SEC</div>
     </div>
-    <span v-if="timeExpired" class="expired">VREME VAM JE ISTEKLO!</span>
+    <span v-if="timeExpired" class="expired">Time's up!</span>
   </div>
 </template>
   
